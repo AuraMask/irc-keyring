@@ -24,7 +24,7 @@ jobs:
     steps:
       - checkout
       - run: ls ./
-      - run: ls ~/repo/
+      - run: pwd
       - run: echo working_directory
       - run: yarn install
       - run: yarn test
