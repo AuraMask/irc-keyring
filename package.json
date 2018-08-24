@@ -1,0 +1,24 @@
+{
+  "name": "irc-keyring",
+  "version": "0.0.1",
+  "description": "A module for managing variouskeyrings of IrChain accounts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ldcc/irc-keyring.git"
+  },
+  "keywords": [
+    "irchain",
+    "auramask",
+    "keyring"
+  ],
+  "author": "ldcc <contact@irchain.io>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ldcc/irc-keyring/issues"
+  },
+  "homepage": "https://github.com/ldcc/irc-keyring#readme"
+}
