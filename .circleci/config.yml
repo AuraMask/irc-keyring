@@ -26,3 +26,5 @@ jobs:
       - run: ls ./
       - run: ls ~/repo/
       - run: echo working_directory
+      - run: yarn install
+      - run: yarn test
