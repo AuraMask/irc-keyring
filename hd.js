@@ -1,7 +1,7 @@
 const EventEmitter = require('events').EventEmitter;
 const hdkey = require('icjs-wallet/hdkey');
 const bip39 = require('bip39');
-const ethUtil = require('icjs-util');
+const ircUtil = require('icjs-util');
 const sigUtil = require('irc-sig-util');
 
 // Options:
@@ -72,7 +72,7 @@ class HdKeyring extends EventEmitter {
   // tx is an instance of the icjs-transaction class.
   signTransaction(address, tx) {
     const wallet = this._getWalletForAccount(address);
-    var privKey = wallet.getPrivateKey();
+    const privKey = wallet.getPrivateKey();
     tx.sign(privKey);
     return Promise.resolve(tx);
   }
@@ -81,17 +81,17 @@ class HdKeyring extends EventEmitter {
   // hd
   signMessage(withAccount, data) {
     const wallet = this._getWalletForAccount(withAccount);
-    const message = ethUtil.stripHexPrefix(data);
-    var privKey = wallet.getPrivateKey();
-    var msgSig = ethUtil.ecsign(new Buffer(message, 'hex'), privKey);
-    var rawMsgSig = ethUtil.bufferToHex(sigUtil.concatSig(msgSig.v, msgSig.r, msgSig.s));
+    const message = ircUtil.stripHexPrefix(data);
+    const privKey = wallet.getPrivateKey();
+    const msgSig = ircUtil.ecsign(new Buffer(message, 'hex'), privKey);
+    const rawMsgSig = ircUtil.bufferToHex(sigUtil.concatSig(msgSig.v, msgSig.r, msgSig.s));
     return Promise.resolve(rawMsgSig);
   }
 
   // For personal_sign, we need to prefix the message:
   signPersonalMessage(withAccount, msgHex) {
     const wallet = this._getWalletForAccount(withAccount);
-    const privKey = ethUtil.stripHexPrefix(wallet.getPrivateKey());
+    const privKey = ircUtil.stripHexPrefix(wallet.getPrivateKey());
     const privKeyBuffer = new Buffer(privKey, 'hex');
     const sig = sigUtil.personalSign(privKeyBuffer, {data: msgHex});
     return Promise.resolve(sig);
@@ -100,7 +100,7 @@ class HdKeyring extends EventEmitter {
   // personal_signTypedData, signs data along with the schema
   signTypedData(withAccount, typedData) {
     const wallet = this._getWalletForAccount(withAccount);
-    const privKey = ethUtil.toBuffer(wallet.getPrivateKey());
+    const privKey = ircUtil.toBuffer(wallet.getPrivateKey());
     const signature = sigUtil.signTypedData(privKey, {data: typedData});
     return Promise.resolve(signature);
   }
@@ -109,10 +109,10 @@ class HdKeyring extends EventEmitter {
   newGethSignMessage(withAccount, msgHex) {
     const wallet = this._getWalletForAccount(withAccount);
     const privKey = wallet.getPrivateKey();
-    const msgBuffer = ethUtil.toBuffer(msgHex);
-    const msgHash = ethUtil.hashPersonalMessage(msgBuffer);
-    const msgSig = ethUtil.ecsign(msgHash, privKey);
-    const rawMsgSig = ethUtil.bufferToHex(sigUtil.concatSig(msgSig.v, msgSig.r, msgSig.s));
+    const msgBuffer = ircUtil.toBuffer(msgHex);
+    const msgHash = ircUtil.hashPersonalMessage(msgBuffer);
+    const msgSig = ircUtil.ecsign(msgHash, privKey);
+    const rawMsgSig = ircUtil.bufferToHex(sigUtil.concatSig(msgSig.v, msgSig.r, msgSig.s));
     return Promise.resolve(rawMsgSig);
   }
 
@@ -134,8 +134,7 @@ class HdKeyring extends EventEmitter {
     const targetAddress = sigUtil.normalize(account);
     return this.wallets.find((w) => {
       const address = sigUtil.normalize(w.getAddress().toString('hex'));
-      return ((address === targetAddress) ||
-          (sigUtil.normalize(address) === targetAddress));
+      return address === targetAddress || sigUtil.normalize(address) === targetAddress;
     });
   }
 }

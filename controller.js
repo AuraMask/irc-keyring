@@ -8,8 +8,8 @@ const filter = require('promise-filter');
 const encryptor = require('browser-passworder');
 const sigUtil = require('irc-sig-util');
 const normalizeAddress = sigUtil.normalize;
-const SimpleKeyring = require('eth-simple-keyring');
-const HdKeyring = require('eth-hd-keyring');
+const SimpleKeyring = require('./simple');
+const HdKeyring = require('hd');
 const keyringTypes = [
   SimpleKeyring,
   HdKeyring,
