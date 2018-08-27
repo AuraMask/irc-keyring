@@ -2,9 +2,9 @@
   "name": "irc-keyring",
   "version": "0.0.1",
   "description": "A module for managing variouskeyrings of IrChain accounts.",
-  "main": "index.js",
+  "main": "controller.js",
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "mocha --require test/helper.js test/index.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,42 @@
   "bugs": {
     "url": "https://github.com/ldcc/irc-keyring/issues"
   },
-  "homepage": "https://github.com/ldcc/irc-keyring#readme"
+  "homepage": "https://github.com/ldcc/irc-keyring#readme",
+  "dependencies": {
+    "bip39": "^2.4.0",
+    "bluebird": "^3.5.0",
+    "browser-passworder": "^2.0.3",
+    "events": "^2.0.0",
+    "hdkey": "0.8.0",
+    "isomorphic-fetch": "^1.1.0",
+    "loglevel": "^1.5.0",
+    "icjs-abi": "^0.0.1",
+    "icjs-tx": "^0.0.2",
+    "icjs-util": "^0.0.1",
+    "icjs-wallet": "^0.0.2",
+    "irc-sig-util": "^0.0.2",
+    "obs-store": "^2.4.1",
+    "promise-filter": "^1.1.0",
+    "xtend": "^4.0.1"
+  },
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "babel-eslint": "^8.0.0",
+    "babel-runtime": "^6.26.0",
+    "chai": "^4.1.2",
+    "chai-spies": "^1.0.0",
+    "clone": "^2.1.1",
+    "eslint": "^5.0.0",
+    "eslint-plugin-chai": "0.0.1",
+    "eslint-plugin-json": "^1.2.0",
+    "eslint-plugin-mocha": "^4.11.0",
+    "extend": "^3.0.0",
+    "jsdom": "^11.2.0",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^5.2.0",
+    "mocha-sinon": "^2.0.0",
+    "polyfill-crypto.getrandomvalues": "^1.0.0",
+    "sinon": "^3.3.0",
+    "webu": "^2.0.2"
+  }
 }
