@@ -1,15 +1,20 @@
 version: 2
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
+
 jobs:
-  build:
+  test:
     docker:
-      - image: circleci/node:8
+      - image: circleci/node:8-browsers
     steps:
       - checkout
-      - restore_cache:
-          key: v1-dependencies-{{ checksum "package.json" }}
-#      - run: yarn install
-      - save_cache:
-          key: v1-dependencies-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-#      - run: yarn test
+      - run:
+          name: Install deps via npm
+          command: yarn install
+      - run:
+          name: Run tests
+          command: yarn test

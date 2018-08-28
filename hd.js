@@ -1,8 +1,8 @@
 const EventEmitter = require('events').EventEmitter;
-const hdkey = require('icjs-wallet/hdkey');
 const bip39 = require('bip39');
 const ircUtil = require('icjs-util');
 const sigUtil = require('irc-sig-util');
+const hdkey = require('icjs-wallet/hdkey');
 
 // Options:
 const hdPathString = `m/44'/60'/0'/0`;
