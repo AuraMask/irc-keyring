@@ -1,6 +1,6 @@
 {
   "name": "irc-keyring",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A module for managing variouskeyrings of IrChain accounts.",
   "main": "controller.js",
   "scripts": {
